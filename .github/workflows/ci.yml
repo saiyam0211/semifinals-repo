@@ -1,0 +1,21 @@
+name: CI
+on: [push]
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - run: |
+          cd python-backend
+          pip install -r requirements.txt
+          pytest tests/
+  javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: |
+          cd javascript-frontend
+          npm install
+          npm test
